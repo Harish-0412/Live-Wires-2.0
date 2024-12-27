@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Purchase Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #8d5c5c; /* Dark black background */
+            color: #fff; /* White text for contrast */
+            overflow-x: hidden;
+            margin: 0;
+            height: 100%;
+            animation: fadeIn 3s ease-out; /* Apply slower fade-in animation */
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        /* Header with Multicolor Gradient Text */
+        h1, h2 {
+            color: transparent;
+            font-size: 3.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #e0bf89, #b6dcf5); 
+            -webkit-background-clip: text; 
+            background-clip: text; 
+            animation: fadeIn 5s ease-out;
+        }
+
+        /* Form Fields */
+        .form-section {
+            margin-bottom: 20px;
+            opacity: 0; /* Initially hidden */
+            transform: translateY(30px); /* Move fields down */
+            animation: fadeInField 1.5s forwards; /* Apply fade-in animation to fields */
+        }
+
+        /* Animation for Form Fields */
+        @keyframes fadeInField {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #d47e7e; 
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #333; /* Dark gray background for input fields */
+            color: #fff; /* White text in input fields */
+        }
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #f39c12; /* Gold button color */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: #e67e22; /* Darker gold for hover effect */
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .valid {
+            color: green;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .form-section input:invalid,
+        .form-section select:invalid {
+            border-color: red;
+        }
+
+        .form-section input:valid,
+        .form-section select:valid {
+            border-color: green;
+        }
+
+        /* Payment Fields */
+        .payment-fields {
+            display: none;
+        }
+
+        .cash-on-delivery-fields {
+            display: none;
+        }
+
+        .form-section textarea {
+            background-color: #333; /* Dark gray background for textareas */
+        }
+
+        /* Multicolor Text Gradient for Specific Sections */
+        .gradient-text {
+            color: transparent;
+            background: linear-gradient(45deg, #f39c12, #bdc3c7); /* Gold to Silver gradient */
+            -webkit-background-clip: text; /* Clip the gradient to the text */
+            background-clip: text; /* Clip the gradient to the text */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="gradient-text">Complete Your Purchase</h1>
+        <form id="purchase-form">
+            
+            <h2 class="gradient-text">Shipping Details</h2>
+            <div class="form-section">
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full-name" required>
+                <span id="full-name-error" class="error"></span>
+            </div>
+            
+            <div class="form-section">
+                <label for="address">Shipping Address:</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+                <span id="address-error" class="error"></span>
+            </div>
+
+            <div class="form-section">
+                <label for="phone">Phone Number (10 digits):</label>
+                <input type="text" id="phone" name="phone" pattern="^\d{10}$" required>
+                <span id="phone-error" class="error"></span>
+            </div>
+
+            <div class="form-section">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+                <span id="email-error" class="error"></span>
+            </div>
+            
+            <h2 class="gradient-text">Payment Information</h2>
+            <div class="form-section">
+                <label for="payment-method">Payment Method:</label>
+                <select id="payment-method" name="payment-method" required>
+                    <option value="credit-card">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="bank-transfer">Bank Transfer</option>
+                    <option value="cash-on-delivery">Cash on Delivery</option>
+                </select>
+                <span id="payment-method-error" class="error"></span>
+            </div>
+
+            <!-- Credit Card Payment Fields -->
+            <div class="payment-fields">
+                <div class="form-section">
+                    <label for="credit-card-number">Credit Card Number (16 digits):</label>
+                    <input type="text" id="credit-card-number" name="credit-card-number" placeholder="Enter credit card number" pattern="^\d{16}$" required>
+                    <span id="credit-card-number-error" class="error"></span>
+                </div>
+
+                <div class="form-section">
+                    <label for="credit-card-expiry">Expiry Date (MM/YY):</label>
+                    <input type="text" id="credit-card-expiry" name="credit-card-expiry" placeholder="MM/YY" required>
+                    <span id="credit-card-expiry-error" class="error"></span>
+                </div>
+
+                <div class="form-section">
+                    <label for="credit-card-cvv">CVV (3 digits):</label>
+                    <input type="text" id="credit-card-cvv" name="credit-card-cvv" placeholder="CVV" pattern="^\d{3}$" required>
+                    <span id="credit-card-cvv-error" class="error"></span>
+                </div>
+            </div>
+
+            <!-- Cash on Delivery Fields -->
+            <div class="cash-on-delivery-fields">
+                <div class="form-section">
+                    <label for="preferred-delivery-time">Preferred Delivery Time:</label>
+                    <input type="text" id="preferred-delivery-time" name="preferred-delivery-time" placeholder="e.g., Morning, Evening">
+                </div>
+
+                <div class="form-section">
+                    <label for="gift-option">
+                        <input type="checkbox" id="gift-option" name="gift-option"> Gift Option (Include a gift wrap)
+                    </label>
+                </div>
+
+                <div class="form-section">
+                    <label for="referral-code">Referral Code (optional):</label>
+                    <input type="text" id="referral-code" name="referral-code">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <label for="newsletter">Subscribe to Email Updates:</label>
+                <input type="checkbox" id="newsletter" name="newsletter">
+            </div>
+
+            <button type="submit" id="submit-btn">Confirm Purchase</button>
+        </form>
+    </div>
+
+    <script>
+        // Handle Payment Method Change
+        document.getElementById("payment-method").addEventListener("change", function() {
+            const paymentMethod = this.value;
+            const paymentFields = document.querySelectorAll(".payment-fields");
+            const codFields = document.querySelectorAll(".cash-on-delivery-fields");
+
+            if (paymentMethod === "credit-card" || paymentMethod === "paypal" || paymentMethod === "bank-transfer") {
+                paymentFields.forEach(field => field.style.display = "block");
+                codFields.forEach(field => field.style.display = "none");
+            } else if (paymentMethod === "cash-on-delivery") {
+                paymentFields.forEach(field => field.style.display = "none");
+                codFields.forEach(field => field.style.display = "block");
+            }
+        });
+
+        // Confirm Purchase Button
+        document.getElementById("purchase-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            alert("Your purchase has been confirmed! Thank you for shopping with us.");
+        });
+
+        // Intersection Observer for Scroll Animations
+        const elements = document.querySelectorAll('.form-section');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        elements.forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
