@@ -2,16 +2,31 @@
 <head>
     <title>Live Wires</title>
     <link rel="website icon" type="png" href="All Images/L.png" >
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="script.js">
+    <link rel="stylesheet" href="livewire.css">
+    <link rel="stylesheet" href="livewire.js">
 </head>
 <body>
     
     <header class="header" id="header">
         <h2 class="logo">Live Wires</h2>
         <nav class="navigation">
-            <a href="#" class="active">Home</a>
-            <a href="#">Products</a>
+            <a href="https://harish-0412.github.io/Live-Wires-2.0/" class="active">Home</a>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-toggle">Products</a>
+                <div class="dropdown-content">
+                    <a href="OverHead.html">Ovr Headphones</a>
+                    <br><br>
+                    <a href="Television.html">Televisions</a>
+                    <br><br>
+                    <a href="smart.html">SmartPhone</a>
+                    <br><br>
+                    <a href="mouse.html">Mouse</a>
+                    <br><br>
+                    <a href="wireless keyboard.html">Keyboards</a>
+                    <br><br>
+                    
+                </div>
+            </div>
             <a href="#">Cart</a>
             <a href="#">Comments</a>
         </nav>
@@ -38,7 +53,7 @@
     <section id="featured">
         <h2>Our Signatures </h2>
         <div class="product-list" id="product-list">
-            <!-- Products will be loaded here -->
+            
         </div>
     </section>
 
@@ -53,7 +68,7 @@
         <div class="category" onclick="filterProducts('HT')">Home Theatre</div>
     </section>
 
-    <script src="script.js"></script>
+    <script src="livewire.js"></script>
 
 </body>
 </html>
