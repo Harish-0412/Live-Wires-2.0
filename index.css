@@ -161,7 +161,6 @@ header {
     
 }
 
-/* Dropdown container */
 .dropdown-menu {
     position: relative;
     display: inline-block;
@@ -205,6 +204,3 @@ header {
 .dropdown-menu:hover .dropdown-content {
     display: block;
 }
-
- 
-
